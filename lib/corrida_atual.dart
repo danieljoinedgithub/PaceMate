@@ -13,7 +13,6 @@ class Corrida {
   double? ultimaLatitude; // Última latitude válida
   double? ultimaLongitude; // Última longitude válida
   double tempo_total = 0.0; // Tempo total em minutos
-  bool primeira_coordenada = true;
   // Método para adicionar uma nova coordenada e calcular os atributos
   void push_coordenadas(double latitude, double longitude, DateTime timestamp) {
     if (ultimoTimestamp != null) {
@@ -21,18 +20,19 @@ class Corrida {
       double dist = _calcular_distancia(ultimaLatitude!, ultimaLongitude!, latitude, longitude);
       double tempo = timestamp.difference(ultimoTimestamp!).inSeconds / 60.0; // Tempo em minutos
 
-      // Calcular velocidade e verificar se é um erro (distância absurda ou velocidade impossível)
-      double velocidade = dist / tempo; // Velocidade em km/min
+     // Calcular o pace instantâneo
+      pace_instantaneo = tempo / dist;
+      
 
       // Se a velocidade for impossível, ignoramos a coordenada
-      if (velocidade > 35/60 || dist > 0.5 || velocidade < 5/60) { // Limite arbitrário de 35 km/min e 0.5 km entre coordenadas
-        if(primeira_coordenada){primeira_coordenada = false; return;}
-        print("Coordenada inválida detectada, ignorando...");
-        print(velocidade*60);
-        dist = 0;
+      if (pace_instantaneo > 14.0 || dist > 0.5 || pace_instantaneo < 2.0) { // Limite arbitrário de 35 km/min e 0.5 km entre coordenadas
+          dist = 0;
+          pace_instantaneo = 0;
         return;
       }
-
+      else{
+        print("Coordenana válida: $dist; $pace_instantaneo; tempo = $tempo");
+      }
       // Atualizar distância total
       distancia_total += dist;
 

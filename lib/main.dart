@@ -98,13 +98,19 @@ class _MainScreenState extends State<MainScreen> {
             // Start/Stop buttons
             SizedBox(height: 20),
             isRunning
-                ? ElevatedButton(
+                ? TextButton(
                     onPressed: _stopRun,
-                    child: Icon(Icons.stop),
+                    child: Icon(
+                      Icons.stop,
+                      size: 60,
+                      color: Colors.redAccent,),
                   )
-                : ElevatedButton(
+                : TextButton(
                     onPressed: _startRun,
-                    child: Icon(Icons.play_arrow),
+                    child: Icon(
+                      Icons.play_arrow,
+                      size: 60,
+                      color: Colors.greenAccent,),
                   ),
           ],
         ),

@@ -1,0 +1,1 @@
+ /home/clint/Documents/GitHub/PaceMate/.dart_tool/flutter_build/5fd252348ac314f2e65ed4cea4241484/native_assets.yaml: 
