@@ -47,4 +47,10 @@ class GpsService {
     await _locationSubscription.cancel();
     print("GPS parou.");
   }
+
+
+
+
 }
+
+
